@@ -1,0 +1,134 @@
+﻿@model IEnumerable<staj_day3_meh.Models.Resim>
+
+@{
+    ViewBag.Title = "Dosyalar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Dosyalar</h2>
+<style>
+    .success {
+        border: solid 1px rgb(13,109,0);
+        width: 300px;
+        padding: 5px;
+        background-color: rgb(215,255,218);
+    }
+
+    .failed {
+        border: solid 1px red;
+        width: 300px;
+        padding: 5px;
+        background-color: rgb(255,229,229);
+    }
+</style>
+
+
+
+@using (Html.BeginForm("Dosyalar", "Modul", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="dosya-ekle col-md-12">
+        <div class="nav-tabs-custom">
+
+            <div class="tab-content">
+                <div class="active tab-pane" id="activity">
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                @TempData["shortMessage"]
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <input class="form-control" type="file" name="Link" required value="" />
+                                <div id="content">
+
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <input class="form-control btn-success" type="submit" name="btnKayit01" value="Ekle" id="AjaxPost" />
+                            </td>
+
+                        </tr>
+                    </table>
+                </div><!-- /.tab-pane -->
+            </div><!-- /.tab-content -->
+        </div>
+    </div>
+}
+<!--listeleyip silme kısmı-->
+@**@<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3  col-sm-6 sil-dosya ">
+                <img src="@item.Link" class="img-rounded dosyalar-image" />
+                <br />
+                <span class="post-categories" margin="auto">
+                    <button  class="btn btn-danger show-alert" type="button" onclick="return DosyaSil(@item.Id)"   @*href="/Modul/DosyaSil/@item.Id" rel="tag"*@>Sil</button>
+                </span>  <!--.post-categories -->
+            </div>
+        }
+    </div>
+</div>
+
+<!--aşağısı ajax denemenin-->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        function DosyaSil(Id) {
+            
+            bootbox.confirm("Silmek istediğinize emin misiniz?", function (result) {
+                if (result) {
+                    var dataObject = {
+                        Id: $("#Id").val()
+                    };
+                    var form_data = new FormData();
+                    form_data.append('Id', dataObject);
+                    window.location = '/Modul/DosyaSil/' + Id;
+                }
+            });
+        }
+
+            @*$(document).ready(function () {
+                $("#AjaxPost").click(function () {
+                    $("#content").html("<b>Please Wait...</b>");
+
+                    var dataObject = {
+                        Link: $("#Link").val()
+                    };
+                    var form_data = new FormData();
+                    form_data.append('Link', dataObject);
+
+                    $.ajax({
+                        url: "@Url.Action("Dosyalar", "Modul")",
+                        type: "POST",
+                        async: false,
+                        data: form_data,
+                        success: function (data) {
+                            alert(data)
+                            return false
+                            if (data) {
+                                $("#Link").val('');
+                                $("#content").html("<div class='success'> Başarı ile yüklendi </div>");
+                            }
+                            else {
+                                $("#content").html("<div class='failed'> Hata!</div>");
+                            }
+                        },
+                        error: function () {
+                            $("#content").html("<div class='failed'>Error! Please try again</div>");
+                        }
+                    });
+
+                });
+
+        });*@
+
+
+    </script>
+}

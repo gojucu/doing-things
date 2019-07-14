@@ -1,0 +1,26 @@
+﻿
+
+body {
+  
+}
+
+.dosyalar-image{
+    width:250px;
+    height:250px;
+    padding:10px;
+    border-radius:8%;
+}
+@media(max-width:770px){
+    .dosyalar-image {
+        width: 100%;
+        height: 100%;
+    }
+}
+.dosya-ekle{
+    text-align:center;
+    margin:auto;
+}
+.sil-dosya{
+    text-align:center;
+    margin-bottom:30px;
+}
