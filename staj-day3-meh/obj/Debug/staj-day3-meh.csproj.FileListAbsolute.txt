@@ -161,8 +161,8 @@ C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\bin\Antlr3.Ru
 C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\bin\System.Diagnostics.DiagnosticSource.xml
 C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\bin\Microsoft.AspNet.TelemetryCorrelation.xml
 C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\obj\Debug\staj-day3-meh.csprojAssemblyReference.cache
 C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\obj\Debug\staj-day3-meh.csproj.CoreCompileInputs.cache
 C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\obj\Debug\staj-day3-meh.csproj.CopyComplete
 C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\obj\Debug\staj-day3-meh.dll
 C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\obj\Debug\staj-day3-meh.pdb
+C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\obj\Debug\staj-day3-meh.csprojAssemblyReference.cache

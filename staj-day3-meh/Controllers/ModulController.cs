@@ -38,6 +38,7 @@ namespace staj_day3_meh.Controllers
         [Route("Dosyalar")]
         public ActionResult Dosyalar(Resim resim, HttpPostedFileBase Link)
         {
+            string message = "";
             string uzanti = Path.GetExtension(Link.FileName).ToLower();
             string[] Uzantilar = new[] { ".jpg", ".png", ".docx", ".xlsx" };
            
@@ -53,12 +54,12 @@ namespace staj_day3_meh.Controllers
                 }
                 else
                 {
-                TempData["shortMessage"] = "Lütfen geçerli uzantılardan birini giriniz! (.jpg, .png, .word ve .excel)";
-
+                TempData["shortMessage"] = "Lütfen geçerli uzantılardan birini giriniz! (.jpg, .png, .docx ve .xlsx)";
+                
+                System.Threading.Thread.Sleep(4000);
                 return RedirectToAction("Dosyalar", "Modul");
-                }
-            
-            string message = "";
+                
+            }
             //System.Threading.Thread.Sleep(4000);
 
             foreach(string u in Uzantilar)
@@ -74,7 +75,7 @@ namespace staj_day3_meh.Controllers
                                     context.SaveChanges();
 
                                     message = "Dosya kaydedildi!";
-                                }
+                        }
                         }    
                     }
                 }

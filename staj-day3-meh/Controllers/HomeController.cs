@@ -17,7 +17,6 @@ namespace staj_day3_meh.Controllers
         public ActionResult Index(int id)
         {
             ViewBag.Title = id;
-            ViewBag.mesaj = "selam";
             Menu me = context.Menus.FirstOrDefault(x => x.id == id);
             
             return View(me);

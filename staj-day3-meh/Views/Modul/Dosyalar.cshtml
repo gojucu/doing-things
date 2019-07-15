@@ -41,6 +41,9 @@
 
                             <td>
                                 <input class="form-control" type="file" name="Link" required value="" />
+                                <script>
+                                    heyyo();
+                                </script>
                                 <div id="content">
 
                                 </div>
@@ -49,7 +52,7 @@
 
                         <tr>
                             <td>
-                                <input class="form-control btn-success" type="submit" name="btnKayit01" value="Ekle" id="AjaxPost" />
+                                <input class="form-control btn-success show-alert" type="submit" name="btnKayit01" value="Ekle"  />
                             </td>
 
                         </tr>
@@ -64,13 +67,27 @@
     <div class="row">
         @foreach (var item in Model)
         {
-            <div class="col-lg-3  col-sm-6 sil-dosya ">
-                <img src="@item.Link" class="img-rounded dosyalar-image" />
-                <br />
-                <span class="post-categories" margin="auto">
-                    <button  class="btn btn-danger show-alert" type="button" onclick="return DosyaSil(@item.Id)"   @*href="/Modul/DosyaSil/@item.Id" rel="tag"*@>Sil</button>
-                </span>  <!--.post-categories -->
-            </div>
+        <div class="col-lg-3  col-sm-6 sil-dosya ">
+            @{
+                string uzanti = Path.GetExtension(item.Link);
+                if (uzanti == ".docx")
+                {
+                    <img src="~/Content/Word.jpg" class="img-rounded dosyalar-image" title="@item.Link" />
+                }
+                else if (uzanti == ".xlsx")
+                {
+                    <img src="~/Content/excel.jpg" class="img-rounded dosyalar-image" title="@item.Link" />
+                }
+                else
+                {
+                    <img src="@item.Link" class="img-rounded dosyalar-image" title="@item.Link" />
+                }
+            }
+            <br />
+            <span class="post-categories" margin="auto">
+                <button class="btn btn-danger" type="button" onclick="return DosyaSil(@item.Id)" @*href="/Modul/DosyaSil/@item.Id" rel="tag"*@>Sil</button>
+            </span>  <!--.post-categories -->
+        </div>
         }
     </div>
 </div>
@@ -79,9 +96,13 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-
+        $(document).on("click", ".show-alert", function (e) {
+            bootbox.alert('Lütfen geçerli uzantılardan birini giriniz! (.jpg, .png, .docx ve .xlsx))', function () {
+                console.log("Alert Callback");
+            });
+        });
         function DosyaSil(Id) {
-            
+
             bootbox.confirm("Silmek istediğinize emin misiniz?", function (result) {
                 if (result) {
                     var dataObject = {

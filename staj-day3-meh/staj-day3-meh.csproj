@@ -6748,6 +6748,7 @@
     <Content Include="Content\dist\js\demo.js" />
     <Content Include="Content\dist\js\pages\dashboard.js" />
     <Content Include="Content\dist\js\pages\dashboard2.js" />
+    <Content Include="Content\excel.jpg" />
     <Content Include="Content\js\app.js" />
     <Content Include="Content\js\cors\jquery.postmessage-transport.js" />
     <Content Include="Content\js\cors\jquery.xdr-transport.js" />
@@ -6931,6 +6932,7 @@
     <Content Include="Content\server\php\UploadHandler.php" />
     <Content Include="Content\server\UploadHandler_4_0.aspx" />
     <Content Include="Content\UploadHandler_4_0.aspx" />
+    <Content Include="Content\Word.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
