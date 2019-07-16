@@ -6933,6 +6933,7 @@
     <Content Include="Content\server\UploadHandler_4_0.aspx" />
     <Content Include="Content\UploadHandler_4_0.aspx" />
     <Content Include="Content\Word.jpg" />
+    <Content Include="Content\x-png-23.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

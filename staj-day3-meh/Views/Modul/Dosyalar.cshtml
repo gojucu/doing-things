@@ -7,87 +7,97 @@
 
 <h2>Dosyalar</h2>
 @*<style>
-    .success {
-        border: solid 1px rgb(13,109,0);
-        width: 300px;
-        padding: 5px;
-        background-color: rgb(215,255,218);
-    }
+        .success {
+            border: solid 1px rgb(13,109,0);
+            width: 300px;
+            padding: 5px;
+            background-color: rgb(215,255,218);
+        }
 
-    .failed {
-        border: solid 1px red;
-        width: 300px;
-        padding: 5px;
-        background-color: rgb(255,229,229);
-    }
-</style>*@
+        .failed {
+            border: solid 1px red;
+            width: 300px;
+            padding: 5px;
+            background-color: rgb(255,229,229);
+        }
+    </style>*@
 
 
 
-@using (Html.BeginForm("Dosyalar", "Modul", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <div class="dosya-ekle col-md-12">
-        <div class="nav-tabs-custom">
+@*@using (Html.BeginForm("Dosyalar", "Modul", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {*@
+<div class="dosya-ekle col-md-12">
+    <div class="nav-tabs-custom">
 
-            <div class="tab-content">
-                <div class="active tab-pane" id="activity">
-                    <table>
-                        <tr>
-                            <td colspan="2">
-                                @TempData["shortMessage"]
-                            </td>
-                        </tr>
-                        <tr>
+        <div class="tab-content">
+            <div class="active tab-pane" id="activity">
 
-                            <td>
-                                <input class="form-control" type="file" name="Link" required value="" />
-                                <script>
-                                    heyyo();
-                                </script>
-                                <div id="content">
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            @TempData["shortMessage"]
+                        </td>
+                    </tr>
+                    <tr>
 
-                                </div>
-                            </td>
-                        </tr>
+                        <td>
+                            <input class="form-control" type="file" id="SelectImage" name="Link" required value="" />
+                            <script>
+                                heyyo();
+                            </script>
 
-                        <tr>
-                            <td>
-                                <input class="form-control btn-success show-alert" type="submit" name="btnKayit01" value="Ekle"  />
-                            </td>
+                        </td>
+                    </tr>
 
-                        </tr>
-                    </table>
-                </div><!-- /.tab-pane -->
-            </div><!-- /.tab-content -->
-        </div>
+                    <tr>
+                        <td>
+                            <input class="form-control btn-success show-alert" type="button" onclick="UploadImage() " name="btnKayit01" value="Ekle" />
+                        </td>
+
+                    </tr>
+
+                </table>
+            </div><!-- /.tab-pane -->
+        </div><!-- /.tab-content -->
     </div>
-}
+</div>
+@*}*@
 <!--listeleyip silme kısmı-->
-@**@<div class="container">
+
+<div class="container">
+    <h2>Yeni Yüklenen Dosyalar</h2>
+
+
+    <div class="col-md-12 thumbnail" id="UploadedImage"></div>
+    <br />
+    <hr />
+
+    <h2>Dosyalar</h2>
+
     <div class="row">
         @foreach (var item in Model)
         {
-        <div class="col-lg-3  col-sm-6 sil-dosya ">
-            @{
-                string uzanti = Path.GetExtension(item.Link);
-                if (uzanti == ".docx")
-                {
-                    <img src="~/Content/Word.jpg" class="img-rounded dosyalar-image" title="@item.Link" />
+            <div class="col-lg-3  col-sm-6 sil-dosya">
+                @{
+                    string uzanti = Path.GetExtension(item.Link);
+                    if (uzanti == ".docx")
+                    {
+                        <img src="~/Content/Word.jpg" class="img-rounded dosyalar-image" title="@item.Link" />
+                    }
+                    else if (uzanti == ".xlsx")
+                    {
+                        <img src="~/Content/excel.jpg" class="img-rounded dosyalar-image" title="@item.Link" />
+                    }
+                    else
+                    {
+                        <img src="@item.Link" class="img-rounded dosyalar-image" title="@item.Link" />
+                    }
                 }
-                else if (uzanti == ".xlsx")
-                {
-                    <img src="~/Content/excel.jpg" class="img-rounded dosyalar-image" title="@item.Link" />
-                }
-                else
-                {
-                    <img src="@item.Link" class="img-rounded dosyalar-image" title="@item.Link" />
-                }
-            }
-            <br />
-            <span class="post-categories" margin="auto">
-                <button class="btn btn-danger" type="button" onclick="return DosyaSil(@item.Id)" @*href="/Modul/DosyaSil/@item.Id" rel="tag"*@>Sil</button>
-            </span>  <!--.post-categories -->
-        </div>
+                <br />
+                <span class="post-categories" margin="auto">
+                    <button class="btn btn-danger" type="button" onclick="return DosyaSil(@item.Id)" @*href="/Modul/DosyaSil/@item.Id" rel="tag"*@>Sil</button>
+                </span>  <!--.post-categories -->
+            </div>
         }
     </div>
 </div>
@@ -95,12 +105,30 @@
 <!--aşağısı ajax denemenin-->
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    
+
     <script>
-        $(document).on("click", ".show-alert", function (e) {
-            bootbox.alert('Lütfen geçerli uzantılardan birini giriniz! (.jpg, .png, .docx ve .xlsx))', function () {
-                console.log("Alert Callback");
-            });
-        });
+        
+           //var fup = document.getElementById('Link');
+           // var fileName = fup.value;
+           // var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+
+           // if (ext == "jpg" || ext == "png") {
+           //     return true;
+           // }
+           // else {
+           //     bootbox.alert('Lütfen geçerli uzantılardan birini giriniz! (.jpg, .png, .docx ve .xlsx))', function () {
+           //         console.log("Alert Callback");
+           //         return false;
+           //     } 
+        
+                
+        //$(document).on("click", ".show-alert", function (e) {
+
+            //bootbox.alert('Lütfen geçerli uzantılardan birini giriniz! (.jpg, .png, .docx ve .xlsx))', function () {
+            //console.log("Alert Callback");
+        //});
+        //});
         function DosyaSil(Id) {
 
             bootbox.confirm("Silmek istediğinize emin misiniz?", function (result) {
@@ -114,8 +142,39 @@
                 }
             });
         }
+        //upload deneme
+        var UploadImage = function () {
+            var file = $("#SelectImage").get(0).files;
+            var data = new FormData;
+            data.append("Link", file[0]);
+            $.ajax({
+                type: "POST",
+                url: "/Modul/Dosyalarr",
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function (sonuc) {
 
-            @*$(document).ready(function () {
+                    if (sonuc) {
+                        bootbox.alert({
+                            message: "Yüklendi",
+                            callback: function () {
+                                window.location.reload(true);
+
+                            }
+                        })
+                        //$("#UploadedImage").append('<img src="/Modul/DisplayingImage?imgID=' + imgID + '"class= dosyalar-image "/>');
+                    } else {
+                        bootbox.alert({
+                            message: "Hata..gerizekalımısın"
+                         
+                        })
+                    }
+                 
+                }
+            })
+        }
+    @*$(document).ready(function () {
                 $("#AjaxPost").click(function () {
                     $("#content").html("<b>Please Wait...</b>");
 
