@@ -56,27 +56,34 @@
     <div class="row">
         @foreach (var item in Model)
         {
-            <div class="col-lg-3  col-sm-6 sil-dosya">
-                @{
-                    string uzanti = Path.GetExtension(item.Link);
-                    if (uzanti == ".docx")
-                    {
-                        <img src="~/Content/Word.jpg" class="img-rounded dosyalar-image" title="@item.Link" />
-                    }
-                    else if (uzanti == ".xlsx")
-                    {
-                        <img src="~/Content/excel.jpg" class="img-rounded dosyalar-image" title="@item.Link" />
-                    }
-                    else
-                    {
-                        <img src="@item.Link" class="img-rounded dosyalar-image" title="@item.Link" />
-                    }
+        <div class="col-lg-3  col-sm-6 sil-dosya">
+            @{
+                string uzanti = Path.GetExtension(item.Link);
+                if (uzanti == ".docx")
+                {
+                    <img src="~/Content/Word.jpg" class="img-rounded dosyalar-image" title="@item.Link" />
                 }
-                <br />
-                <span class="post-categories" margin="auto">
-                    <button class="btn btn-danger" type="button" onclick="return DosyaSil(@item.Id)" @*href="/Modul/DosyaSil/@item.Id" rel="tag"*@>Sil</button>
-                </span>  <!--.post-categories -->
+                else if (uzanti == ".xlsx")
+                {
+                    <img src="~/Content/excel.jpg" class="img-rounded dosyalar-image" title="@item.Link" />
+                }
+                else
+                {
+                    <img src="@item.Link" class="img-rounded dosyalar-image" title="@item.Link" />
+                }
+            }
+            <br />
+            <div>
+                <p id="@item.Link">@item.Link</p>
+                <button class="btn btn-xs btn-warning" onclick="copyToClipboard('@item.Link')">Yolu Kopyala</button>
+
             </div>
+            
+            <br />
+            <span class="post-categories" margin="auto">
+                <button class="btn btn-danger" type="button" onclick="return DosyaSil(@item.Id)" @*href="/Modul/DosyaSil/@item.Id" rel="tag"*@>Sil</button>
+            </span>  <!--.post-categories -->
+        </div>
         }
     </div>
 </div>
@@ -87,7 +94,28 @@
     
 
     <script>
-       
+        function copyToClipboard(elementId) {
+
+            // Create a "hidden" input
+            var aux = document.createElement("input");
+
+            // Assign it the value of the specified element
+            aux.setAttribute("value", document.getElementById(elementId).innerHTML);
+
+            // Append it to the body
+            document.body.appendChild(aux);
+
+            // Highlight its content
+            aux.select();
+
+            // Copy the highlighted text
+            document.execCommand("copy");
+
+            // Remove it from the body
+            document.body.removeChild(aux);
+
+        }
+
         function DosyaSil(Id) {
 
             bootbox.confirm("Silmek istediğinize emin misiniz?", function (result) {
