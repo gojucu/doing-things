@@ -34,6 +34,10 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
+            <li>
+                @Html.ActionLink("Sayfa Ekleme", "SayfaEkle", "Sayfa", new { area = "" }, null)
+
+            </li>
             <li class="header">MAIN NAVIGATION</li>
             @foreach (var item in Model.ToList().Where(m => m.ustid == 0))
             {
@@ -50,7 +54,7 @@
                         <ul class="treeview-menu">
                             @foreach (var item2 in Model.ToList().Where(m => m.ustid == item.id))
                             {
-                            <li class="active">@Html.ActionLink( item2.Ad, "Index", "Home", new { id = item2.id }, null)</li>
+                                <li class="active">@Html.ActionLink(item2.Ad, "Index", "Home", new { id = item2.id }, null)</li>
                             }
                         </ul>
                     </li>
@@ -67,7 +71,7 @@
             <li class="header">Modüller</li>
             <li>
                 @Html.ActionLink("Dosyalar", "Dosyalar", "Modul", new { area = "" }, null)
-                
+
             </li>
         </ul>
     </section>

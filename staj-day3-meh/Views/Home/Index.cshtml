@@ -12,41 +12,53 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <p>@ViewBag.mesaj</p> 
+        <p>@ViewBag.mesaj</p>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id)
 
-       
+
 
         <div class="form-group">
-           @*@Html.LabelFor(model => model.icerik, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @*@Html.LabelFor(model => model.icerik, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.icerik, new { @id = "editor1" })
-                            <script type="text/javascript">
+                <script type="text/javascript">
                                 var editor = CKEDITOR.instances['editor1'];
                                 if (editor) { editor.destroy(true); }
                                 CKEDITOR.replace('editor1', {
                                     enterMode: CKEDITOR.ENTER_BR,
                                 });
                                 CKFinder.setupCKEditor(null, '@Url.Content("~/ckeditor/ckfinder/")');
-                            </script>
+                </script>
                 @Html.ValidationMessageFor(model => model.icerik, "", new { @class = "text-danger" })
             </div>
-            
+
         </div>
 
 
         <div class="form-group">
             <div class=" col-md-10">
                 <input type="submit" value="Kaydet" class="btn btn-lg btn-success" />
+                <button class="btn btn-lg btn-danger" type="button" onclick="return DosyaSil(@Model.id)" @*href="/Modul/DosyaSil/@item.Id" rel="tag"*@>Sayfayı Sil</button>
             </div>
         </div>
     </div>
-    
+
 }
 
-@*<script>
-    // Ckeditor ü  ön tanımlı  ayarları  kullanarak <textarea id="editor1"> nesnesi üzerinde aktif  ediyoruz
-    CKEDITOR.replace('editor1');
-</script>*@
+<script>
+       function DosyaSil(Id) {
+
+                bootbox.confirm("Sayfayı silmek istediğinize emin misiniz?", function (result) {
+                    if (result) {
+                        var dataObject = {
+                            Id: $("#Id").val()
+                        };
+                        var form_data = new FormData();
+                        form_data.append('Id', dataObject);
+                        window.location = '/Sayfa/SayfaSil/' + Id;
+                    }
+                });
+            }
+    </script>

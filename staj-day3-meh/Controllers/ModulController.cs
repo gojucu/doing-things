@@ -118,52 +118,6 @@ namespace staj_day3_meh.Controllers
             }
         }
 
-
-        //string message = "";
-        //    string uzanti = Path.GetExtension(Link.FileName).ToLower();
-        //    string[] Uzantilar = new[] { ".jpg", ".png", ".docx", ".xlsx" };
-
-        //        if (uzanti==".jpg"|| uzanti==".png") {
-        //            string dosyaadi = ResimKaydet(Link);
-        //            resim.Link = "/Content/images/" + dosyaadi;
-        //        }
-        //        else if(uzanti== ".docx" || uzanti== ".xlsx")
-        //        {
-        //            string hey= Path.GetFileNameWithoutExtension(Link.FileName) + Guid.NewGuid() + Path.GetExtension(Link.FileName);
-        //            string dosyaadi = hey;
-        //            resim.Link = "/Content/images/"+ dosyaadi;
-        //        }
-        //        else
-        //        {
-        //        TempData["shortMessage"] = "Lütfen geçerli uzantılardan birini giriniz! (.jpg, .png, .docx ve .xlsx)";
-
-        //        System.Threading.Thread.Sleep(4000);
-        //        return RedirectToAction("Dosyalar", "Modul");
-
-        //    }
-        //    //System.Threading.Thread.Sleep(4000);
-
-        //    foreach(string u in Uzantilar)
-        //        {
-        //           if (uzanti == u)
-        //            {
-        //                if (ModelState.IsValid)
-        //                {
-        //                        using (context)
-        //                        {
-
-        //                            context.Resims.Add(resim);
-        //                            context.SaveChanges();
-
-        //                            message = "Dosya kaydedildi!";
-        //                }
-        //                }    
-        //            }
-        //        }
-        //    TempData["shortMessage"] = message;
-        //    return RedirectToAction("Dosyalar", "Modul");
-        //}
-
         public ActionResult DosyaSil(int id)
         {
             context.Resims.Remove(context.Resims.FirstOrDefault(x => x.Id == id));

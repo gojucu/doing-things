@@ -1,0 +1,61 @@
+﻿@model staj_day3_meh.Models.Menu
+
+@{
+    ViewBag.Title = "SayfaEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SayfaEkle</h2>
+
+
+@using (Html.BeginForm("SayfaEkle", "Sayfa", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Menu</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <table>
+            <tr>
+                <td>Sayfa Adı:</td>
+                <td>
+                    <input class="form-control" type="text" name="Ad" value="" placeholder="Ad" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>Üst id:</td>
+                <td><input class="form-control" placeholder="ustid" type="text" name="ustid" value="" /> </td>
+            </tr>
+
+
+            <tr>
+                <td>Sıra:</td>
+                <td><input class="form-control" placeholder="sira" type="text" name="sira" value="" /> </td>
+            </tr>
+            <tr>
+                <td>İçerik:</td>
+                <td><input class="form-control" placeholder="icerik" type="text" name="icerik" value="" /> </td>
+            </tr>
+            <tr>
+                <td>Dış Link:</td>
+                <td><input class="form-control" placeholder="dislink" type="text" name="dislink" value="" /> </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input class="send" type="submit" name="btnEkle" value="Ekle" />
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
