@@ -165,4 +165,3 @@ C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\obj\Debug\sta
 C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\obj\Debug\staj-day3-meh.csproj.CopyComplete
 C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\obj\Debug\staj-day3-meh.dll
 C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\obj\Debug\staj-day3-meh.pdb
-C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\obj\Debug\staj-day3-meh.csprojAssemblyReference.cache
