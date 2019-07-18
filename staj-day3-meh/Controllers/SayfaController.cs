@@ -22,6 +22,7 @@ namespace staj_day3_meh.Controllers
             if (menu != null)
             {
                menu.Aktif = true;
+                menu.ustid = 0;
                context.Menus.Add(menu);
                context.SaveChanges();
             }
