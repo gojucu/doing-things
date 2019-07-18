@@ -19,6 +19,7 @@ namespace staj_day3_meh.Controllers
         [HttpPost]
         public ActionResult SayfaEkle(Menu menu)
         {
+            try { 
             if (menu != null)
             {
                menu.Aktif = true;
@@ -27,6 +28,12 @@ namespace staj_day3_meh.Controllers
                context.SaveChanges();
             }
             return RedirectToAction("SayfaEkle", "Sayfa");
+            }
+            catch
+            {
+                TempData["hata"] = "Hata! Lütfen gerekli yerleri doldurunuz!";
+                return RedirectToAction("SayfaEkle", "Sayfa");
+            }
         }
         
         public ActionResult SayfaSil(int id)

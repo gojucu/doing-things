@@ -28,10 +28,14 @@ body {
     padding-top:7px;
     text-align:right;
 }
+/*Sayfa ekleme kısmı*/
 .hehe{
     margin-left:2%;
 }
 .sayfa-h2{
     margin:0 0 0 120px;
     padding-top:150px;
+}
+.h3-color{
+    color:red;
 }
