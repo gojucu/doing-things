@@ -11,8 +11,12 @@ namespace staj_day3_meh.Controllers
     {
         // GET: Sayfa
         SistemModel context = new SistemModel();
+
+        
         public ActionResult SayfaEkle()
         {
+            var hey = context.Menus.ToList().Where(x=>x.ustid==0);
+            ViewBag.Liste = hey;
             return View();
         }
 
@@ -22,8 +26,8 @@ namespace staj_day3_meh.Controllers
             try { 
             if (menu != null)
             {
-               menu.Aktif = true;
-                menu.ustid = 0;
+               //menu.Aktif = true;
+               // menu.ustid = 0;
                context.Menus.Add(menu);
                context.SaveChanges();
             }

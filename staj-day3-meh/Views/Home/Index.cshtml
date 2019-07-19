@@ -11,39 +11,77 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <p>@ViewBag.mesaj</p>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.id)
+<div class="hehe form-horizontal">
+    <p>@ViewBag.mesaj</p>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.id)
 
 
+    <h3>Sayfa Adı:</h3>
+    <div class=" form-group">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Ad, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Ad, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <h3>Üst Menu:</h3>
+    <div class=" form-group">
+        <div class="col-md-10">
 
-        <div class="form-group">
-            @*@Html.LabelFor(model => model.icerik, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.icerik, new { @id = "editor1" })
-                <script type="text/javascript">
+
+            @Html.DropDownListFor(model => model.ustid, new SelectList(ViewBag.Liste, "id", "Ad"), "")
+
+            @Html.ValidationMessageFor(model => model.ustid, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <h3>Sayfa Sırası:</h3>
+    <div class=" form-group">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.sira, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.sira, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <h3>Sayfa İçeriği:</h3>
+    <div class="form-group">
+        @*@Html.LabelFor(model => model.icerik, htmlAttributes: new { @class = "control-label col-md-2" })*@
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.icerik, new { @id = "editor1" })
+            <script type="text/javascript">
                                 var editor = CKEDITOR.instances['editor1'];
                                 if (editor) { editor.destroy(true); }
                                 CKEDITOR.replace('editor1', {
                                     enterMode: CKEDITOR.ENTER_BR,
                                 });
                                 CKFinder.setupCKEditor(null, '@Url.Content("~/ckeditor/ckfinder/")');
-                </script>
-                @Html.ValidationMessageFor(model => model.icerik, "", new { @class = "text-danger" })
-            </div>
-
+            </script>
+            @Html.ValidationMessageFor(model => model.icerik, "", new { @class = "text-danger" })
         </div>
 
-
-        <div class="form-group">
-            <div class=" col-md-10">
-                <input type="submit" value="Kaydet" class="btn btn-lg btn-success" />
-                <button class="btn btn-lg btn-danger" type="button" onclick="return DosyaSil(@Model.id)" @*href="/Modul/DosyaSil/@item.Id" rel="tag"*@>Sayfayı Sil</button>
-            </div>
+    </div>
+    <h3>Dış Link:</h3>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.dislink, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.dislink, "", new { @class = "text-danger" })
         </div>
     </div>
+    <h3>Sayfa Aktif:</h3>
+    <div class=" form-group">
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.Aktif)
+            @Html.ValidationMessageFor(model => model.sira, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class=" col-md-10">
+            <input type="submit" value="Kaydet" class="tus btn btn-lg btn-success" />
+            <button class="tus btn btn-lg btn-danger" type="button" onclick="return DosyaSil(@Model.id)" @*href="/Modul/DosyaSil/@item.Id" rel="tag"*@>Sayfayı Sil</button>
+        </div>
+    </div>
+</div>
 
 }
 

@@ -18,7 +18,9 @@ namespace staj_day3_meh.Controllers
         {
             ViewBag.Title = id;
             Menu me = context.Menus.FirstOrDefault(x => x.id == id);
-            
+            var hey = context.Menus.ToList().Where(x => x.ustid == 0 && x.id != id);
+            ViewBag.Liste = hey;
+
             return View(me);
         }
         [HttpPost]
@@ -27,7 +29,13 @@ namespace staj_day3_meh.Controllers
         public ActionResult Index(Menu menu)
         {
             Menu guncellenecek = context.Menus.FirstOrDefault(x => x.id == menu.id);
+            guncellenecek.Ad = menu.Ad;
+            guncellenecek.ustid = menu.ustid;
+            guncellenecek.sira = menu.sira;
             guncellenecek.icerik = menu.icerik;
+            guncellenecek.dislink = menu.dislink;
+            guncellenecek.Aktif = menu.Aktif; 
+
             context.SaveChanges();
             return RedirectToAction("Index", "Home");
         }
