@@ -42,3 +42,12 @@ body {
 .tus{
     margin:0 7px 16px 0;
 }
+.tus-galeri {
+    margin: 0 15px 0 0;
+}
+/*Galeri Kısmı*/
+.tablo{
+    width:100%;
+    text-align:center;
+    background-color:darkgray;
+}

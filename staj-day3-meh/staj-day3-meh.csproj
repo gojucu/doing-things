@@ -136,12 +136,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\GaleriController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModulController.cs" />
     <Compile Include="Controllers\SayfaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Galeriler.cs" />
+    <Compile Include="Models\GaleriResim.cs" />
+    <Compile Include="Models\GaleriTip.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\Resim.cs" />
     <Compile Include="Models\SistemModel.cs" />
@@ -5577,6 +5581,7 @@
     <Content Include="Content\bower_components\jquery\dist\core.js" />
     <Content Include="Content\bower_components\jquery\dist\jquery.js" />
     <Content Include="Content\bower_components\jquery\dist\jquery.min.js" />
+    <Content Include="Content\owlcarousel\jquery.min.js" />
     <Content Include="Content\bower_components\jquery\dist\jquery.slim.js" />
     <Content Include="Content\bower_components\jquery\dist\jquery.slim.min.js" />
     <Content Include="Content\bower_components\jquery\external\sizzle\dist\sizzle.js" />
@@ -6765,6 +6770,16 @@
     <Content Include="Content\js\jquery.iframe-transport.js" />
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\vendor\jquery.ui.widget.js" />
+    <Content Include="Content\owlcarousel\dist\assets\ajax-loader.gif" />
+    <Content Include="Content\owlcarousel\owl.carousel.css" />
+    <Content Include="Content\owlcarousel\owl.carousel.min.css" />
+    <Content Include="Content\owlcarousel\dist\assets\owl.theme.default.css" />
+    <Content Include="Content\owlcarousel\owl.theme.default.min.css" />
+    <Content Include="Content\owlcarousel\dist\assets\owl.theme.green.css" />
+    <Content Include="Content\owlcarousel\dist\assets\owl.theme.green.min.css" />
+    <Content Include="Content\owlcarousel\dist\assets\owl.video.play.png" />
+    <Content Include="Content\owlcarousel\dist\owl.carousel.js" />
+    <Content Include="Content\owlcarousel\owl.carousel.min.js" />
     <Content Include="Content\plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="Content\plugins\bootstrap-slider\slider.css" />
     <Content Include="Content\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.js" />
@@ -6907,6 +6922,8 @@
     <Content Include="Content\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="Content\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Content\plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="Content\owlcarousel\dist\LICENSE" />
+    <Content Include="Content\owlcarousel\dist\README.md" />
     <None Include="Content\Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Content\Scripts\jquery-1.7.1.js" />
     <Content Include="Content\Scripts\jquery-1.7.1.min.js" />
@@ -7581,6 +7598,9 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Sayfa\SayfaEkle.cshtml" />
+    <Content Include="Views\Galeri\Galeriler.cshtml" />
+    <Content Include="Views\Galeri\Index.cshtml" />
+    <Content Include="Views\Galeri\GaleriDuzenle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,12 +6,13 @@ namespace staj_day3_meh.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Resim")]
-    public partial class Resim
+    [Table("GaleriTip")]
+    public partial class GaleriTip
     {
         public int Id { get; set; }
 
         [Required]
-        public string Link { get; set; }
+        [StringLength(50)]
+        public string Ad { get; set; }
     }
 }

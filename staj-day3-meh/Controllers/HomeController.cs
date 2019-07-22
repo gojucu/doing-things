@@ -28,16 +28,25 @@ namespace staj_day3_meh.Controllers
         [Route("{id:int}")]
         public ActionResult Index(Menu menu)
         {
-            Menu guncellenecek = context.Menus.FirstOrDefault(x => x.id == menu.id);
-            guncellenecek.Ad = menu.Ad;
-            guncellenecek.ustid = menu.ustid;
-            guncellenecek.sira = menu.sira;
-            guncellenecek.icerik = menu.icerik;
-            guncellenecek.dislink = menu.dislink;
-            guncellenecek.Aktif = menu.Aktif; 
+            try
+            {
+                Menu guncellenecek = context.Menus.FirstOrDefault(x => x.id == menu.id);
+                guncellenecek.Ad = menu.Ad;
+                guncellenecek.ustid = menu.ustid;
+                guncellenecek.sira = menu.sira;
+                guncellenecek.icerik = menu.icerik;
+                guncellenecek.dislink = menu.dislink;
+                guncellenecek.Aktif = menu.Aktif; 
 
-            context.SaveChanges();
-            return RedirectToAction("Index", "Home");
+                context.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+            catch
+            {
+                TempData["hata"] = "Hata! Lütfen gerekli yerleri doldurunuz!";
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
 
         public ActionResult SidebarGetir()

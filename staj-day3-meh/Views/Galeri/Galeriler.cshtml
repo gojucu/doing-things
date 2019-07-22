@@ -1,0 +1,153 @@
+﻿@model staj_day3_meh.Models.Galeriler
+
+@{
+    ViewBag.Title = "Galeriler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="h3-color">@TempData["hata"]</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="hehe form-horizontal">
+        <h2>Galeri Oluştur</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <h3>Galeri Adı:</h3>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Ad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <h3>Galeri Tipi:</h3>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Tipi, new SelectList(ViewBag.Liste, "Ad", "Ad"), "")
+                @Html.ValidationMessageFor(model => model.Tipi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <h3>Genişlik:</h3>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Genişlik, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Genişlik, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <h3>Yükseklik:</h3>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Yükseklik, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Yükseklik, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <h3>Galeri Aktif:</h3>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.Aktif)
+                @Html.ValidationMessageFor(model => model.Aktif, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Create" class="tus btn btn-lg btn-bitbucket" />
+            </div>
+        </div>
+    </div>
+}
+    <table class="tablo table table-bordered ">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tipi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Genişlik)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Yükseklik)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Aktif)
+                </th>
+            </tr>
+            @foreach (var item in ViewBag.galeriListe)
+            {
+            <tr>
+                <td>
+                    @item.Ad
+                </td>
+                <td>
+                    @item.Tipi
+                </td>
+                <td>
+                    @item.Genişlik
+                </td>
+                <td>
+                    @item.Yükseklik
+                </td>
+                <td>
+                    @item.Aktif
+                </td>
+                <td>
+                    <a href="/Galeri/@item.Id" class="btn btn-sm btn-bitbucket" rel="tag">Düzenle</a>
+                    <button class="btn btn-sm btn-danger" type="button" onclick="return GaleriSil(@item.Id)" @*href="/Modul/DosyaSil/@item.Id" rel="tag"*@>Sayfayı Sil</button>
+
+
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                </td>
+</tr>
+            }
+
+    </table>
+
+@*@foreach (var item in ViewBag.galeriListe)
+    {
+        <div class="owl-carousel owl-theme">
+            @foreach (var item2 in ViewBag.dosyaListe)
+            {
+                <div class="item" style="width:250px"><img src="@item2.Link" class="img-rounded dosyalar-image" title="@item2.Link" /></div>
+            }
+        </div>
+    }*@
+
+
+
+@section Scripts {
+    <script>
+        function GaleriSil(Id) {
+
+            bootbox.confirm("Silmek istediğinize emin misiniz?", function (result) {
+                if (result) {
+                    var dataObject = {
+                        Id: $("#Id").val()
+                    };
+                    var form_data = new FormData();
+                    form_data.append('Id', dataObject);
+                    window.location = '/Galeri/GaleriSil/' + Id;
+                }
+            });
+        }
+            @*$(document).ready(function () {
+                $('.owl-carousel').owlCarousel({
+                    margin: 10,
+                    loop: true,
+                    autoWidth: true,
+                    items: 4
+                })
+            });*@
+
+    </script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+}

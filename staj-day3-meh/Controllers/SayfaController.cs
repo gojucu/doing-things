@@ -21,6 +21,7 @@ namespace staj_day3_meh.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult SayfaEkle(Menu menu)
         {
             try { 
