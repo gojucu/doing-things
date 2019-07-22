@@ -64,72 +64,22 @@
         </div>
     </div>
 }
-    <div class="dosya-ekle col-md-12">
-        <div class="nav-tabs-custom">
+    <form action="/Galeri/GaleriyeResimEkle" method="post" enctype="multipart/form-data" class="comment-form">
 
-            <div class="tab-content">
-                <div class="active tab-pane" id="activity">
+        <input type="hidden" name="GalerilerId" value="@Model.Id" />
+        <p>
+            <label>Ücret <span class="required">*</span></label><br>
+            <input type="file" name="Link" id="Link">
+        </p>
 
-                    <table>
-                        <tr>
-                            <td colspan="2">
-                                @TempData["shortMessage"]
-                            </td>
-                        </tr>
-                        <tr>
-
-                            <td>
-                                <input class="form-control" type="file" id="SelectImage" name="Link" required value="" />
-
-
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <input class="form-control btn-success show-alert" type="button" onclick="UploadImage() " name="btnKayit01" value="Ekle" />
-                            </td>
-
-                        </tr>
-
-                    </table>
-                </div><!-- /.tab-pane -->
-            </div><!-- /.tab-content -->
-        </div>
-    </div>
+        
+        <p class="form-submit">
+            <input name="submit" type="submit" id="submit" class="submit cs-btn cs-btn-black" value="Başvur">
+        </p>
+    </form>
 @section Scripts {
     <script>
-        var UploadImage = function () {
-            var file = $("#SelectImage").get(0).files;
-            var data = new FormData;
-            data.append("Link", file[0]);
-            $.ajax({
-                type: "POST",
-                url: "/Galeri/GaleriyeResimEkle",
-                data: data,
-                contentType: false,
-                processData: false,
-                success: function (sonuc) {
-
-                    if (sonuc) {
-                        bootbox.alert({
-                            message: "Yüklendi",
-                            callback: function () {
-                                window.location.reload(true);
-
-                            }
-                        })
-                        //$("#UploadedImage").append('<img src="/Modul/DisplayingImage?imgID=' + imgID + '"class= dosyalar-image "/>');
-                    } else {
-                        bootbox.alert({
-                            message: "Hata..gerizekalımısın"
-                         
-                        })
-                    }
-                 
-                }
-            })
-        }
+      
     </script>
     @Scripts.Render("~/bundles/jqueryval")
 }

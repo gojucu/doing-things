@@ -40,9 +40,9 @@ namespace staj_day3_meh.Controllers
             {
                 if (galeriler != null)
                 {
-                context.Galerilers.Add(galeriler);
-                context.SaveChanges();
-                return RedirectToAction("Galeriler", "Galeri");
+                    context.Galerilers.Add(galeriler);
+                    context.SaveChanges();
+                    return RedirectToAction("Galeriler", "Galeri");
                 }
                 TempData["hata"] = "Hata! Lütfen gerekli yerleri doldurunuz!";
                 return RedirectToAction("Galeriler", "Galeri");
@@ -67,7 +67,7 @@ namespace staj_day3_meh.Controllers
             ViewBag.Title = id;
             var galerii = context.GaleriTips.ToList();
             ViewBag.galeriListe = galerii;
-            
+
             Galeriler galeri = context.Galerilers.FirstOrDefault(x => x.Id == id);
             return View(galeri);
         }
@@ -79,20 +79,20 @@ namespace staj_day3_meh.Controllers
         {
             try
             {
-            
-            Galeriler guncellenecek = context.Galerilers.FirstOrDefault(x => x.Id == galeriler.Id);
-            guncellenecek.Ad = galeriler.Ad;
-            guncellenecek.Tipi = galeriler.Tipi;
-            guncellenecek.Genişlik = galeriler.Genişlik;
-            guncellenecek.Yükseklik = galeriler.Yükseklik;
-            guncellenecek.Aktif = galeriler.Aktif;
 
-            context.SaveChanges();
-            return RedirectToAction("Galeriler", "Galeri");
+                Galeriler guncellenecek = context.Galerilers.FirstOrDefault(x => x.Id == galeriler.Id);
+                guncellenecek.Ad = galeriler.Ad;
+                guncellenecek.Tipi = galeriler.Tipi;
+                guncellenecek.Genişlik = galeriler.Genişlik;
+                guncellenecek.Yükseklik = galeriler.Yükseklik;
+                guncellenecek.Aktif = galeriler.Aktif;
+
+                context.SaveChanges();
+                return RedirectToAction("Galeriler", "Galeri");
             }
             catch
             {
-              return  RedirectToAction("Galeriler", "Galeri");
+                return RedirectToAction("Galeriler", "Galeri");
             }
         }
 
@@ -104,28 +104,28 @@ namespace staj_day3_meh.Controllers
             return dosyaadi;
 
         }
-        public JsonResult GaleriyeResimEkle(GaleriResim gresim, HttpPostedFileBase Link)
+
+        [HttpPost]
+        public ActionResult GaleriyeResimEkle(GaleriResim gr, HttpPostedFileBase Link)
         {
             try
             {
                 string uzanti = Path.GetExtension(Link.FileName).ToLower();
                 string[] Uzantilar = new[] { ".jpg", ".png" };
-
                 if (uzanti == ".jpg" || uzanti == ".png")
                 {
                     string dosyaadi = ResimKaydet(Link);
-                    gresim.Link = "/Content/images/" + dosyaadi;
+                    gr.Link = "/Content/images/" + dosyaadi;
                 }
                 else
                 {
                     return Json(false, JsonRequestBehavior.AllowGet);
                 }
-                
-                var file = gresim.Link;
+                var file = gr.Link;
                 if (file != null)
                 {
-                    Resim img = new Resim();
-                    img.Link = gresim.Link;
+                    GaleriResim img = new GaleriResim();
+                    img.Link = gr.Link;
                     foreach (string u in Uzantilar)
                     {
                         if (uzanti == u)
@@ -134,18 +134,25 @@ namespace staj_day3_meh.Controllers
                             {
                                 using (context)
                                 {
-                                    context.Resims.Add(img);
+
+                                    context.GaleriResims.Add(gr);
                                     context.SaveChanges();
+
+
+                                    return RedirectToAction("Galeriler", "Galeri");
                                 }
                             }
                         }
                     }
                 }
-                return Json(true, JsonRequestBehavior.AllowGet);
+
+                return RedirectToAction("Galeriler", "Galeri");
+
             }
             catch
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+
+                return RedirectToAction("Galeriler", "Galeri");
             }
         }
     }
