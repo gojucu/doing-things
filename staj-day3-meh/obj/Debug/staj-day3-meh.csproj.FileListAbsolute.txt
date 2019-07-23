@@ -166,3 +166,7 @@ C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\obj\Debug\sta
 C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\obj\Debug\staj-day3-meh.dll
 C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\obj\Debug\staj-day3-meh.pdb
 C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\obj\Debug\staj-day3-meh.csprojAssemblyReference.cache
+C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\bin\PagedList.dll
+C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\bin\PagedList.Mvc.dll
+C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\bin\PagedList.xml
+C:\Users\speed\OneDrive\Belgeler\GitHub\doing-things\staj-day3-meh\bin\PagedList.Mvc.xml

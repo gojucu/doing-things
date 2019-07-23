@@ -51,3 +51,15 @@ body {
     text-align:center;
     background-color:darkgray;
 }
+.resim-carousel{
+
+    background-color:cornflowerblue;
+    opacity:0.5;
+}
+.resim-car{
+    height:550px;
+}
+.galeri-page {
+    margin: auto;
+    text-align: center;
+}

@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace staj_day3_meh.Controllers
 {
@@ -62,9 +64,25 @@ namespace staj_day3_meh.Controllers
         }
 
         [Route("{id:int}")]
-        public ActionResult GaleriDuzenle(int id)
+        public ActionResult GaleriDuzenle(int id, int? page)
         {
+            Galeriler galeriler= context.Galerilers.FirstOrDefault(x => x.Id == id);
             ViewBag.Title = id;
+            if (galeriler.Tipi == "Ürün Slider")
+            {
+                var sliderResim = context.GaleriResims.ToList().Where(x => x.GalerilerID == id).ToList().ToPagedList(page ?? 1,8);
+                ViewBag.galeriResim = sliderResim;
+            }
+            else
+            {
+                var galeriResim = context.GaleriResims.ToList().Where(x => x.GalerilerID == id);
+                ViewBag.galeriResim = galeriResim;
+            }
+
+            var sayi = context.GaleriResims.ToList().Where(x => x.GalerilerID == id).Count();
+            ViewBag.sayi = sayi;
+
+
             var galerii = context.GaleriTips.ToList();
             ViewBag.galeriListe = galerii;
 
@@ -88,7 +106,7 @@ namespace staj_day3_meh.Controllers
                 guncellenecek.Aktif = galeriler.Aktif;
 
                 context.SaveChanges();
-                return RedirectToAction("Galeriler", "Galeri");
+                return RedirectToAction("GaleriDuzenle", "Galeri", new { id = galeriler.Id });
             }
             catch
             {
@@ -139,7 +157,7 @@ namespace staj_day3_meh.Controllers
                                     context.SaveChanges();
 
 
-                                    return RedirectToAction("Galeriler", "Galeri");
+                                    return RedirectToAction("GaleriDuzenle", "Galeri", new { id = gr.GalerilerID });
                                 }
                             }
                         }
