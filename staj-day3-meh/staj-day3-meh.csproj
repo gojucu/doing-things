@@ -146,6 +146,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ModulController.cs" />
     <Compile Include="Controllers\SayfaController.cs" />
+    <Compile Include="Controllers\UrunlerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -156,6 +157,7 @@
     <Compile Include="Models\Resim.cs" />
     <Compile Include="Models\SistemModel.cs" />
     <Compile Include="Models\sysdiagram.cs" />
+    <Compile Include="Models\Urunler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -7608,6 +7610,8 @@
     <Content Include="Views\Galeri\Galeriler.cshtml" />
     <Content Include="Views\Galeri\Index.cshtml" />
     <Content Include="Views\Galeri\GaleriDuzenle.cshtml" />
+    <Content Include="Views\Urunler\UrunEkle.cshtml" />
+    <Content Include="Views\Urunler\UrunDuzenle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

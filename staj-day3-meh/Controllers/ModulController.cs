@@ -92,31 +92,31 @@ namespace staj_day3_meh.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-        public ActionResult DisplayingImage(int imgid)
-        {
-            var img = context.Resims.SingleOrDefault(x => x.Id == imgid);
-            if (img != null)
-            {
-                string uzanti = Path.GetExtension(img.Link).ToLower();
-                if (uzanti == ".jpg" || uzanti == ".png")
-                {
-                    return File(img.Link, "image/jpg");
-                }
-                else if (uzanti == ".docx")
-                {
-                    return File("/Content/Word.jpg", "image/jpg");
-                }
-                else if (uzanti == ".xlsx")
-                {
-                    return File("/Content/excel.jpg", "image/jpg");
-                }
-                return File("/Content/x-png-23.png", "image/jpg");
-            }
-            else
-            {
-                return File("/Content/x-png-23.png", "image/jpg");
-            }
-        }
+        //public ActionResult DisplayingImage(int imgid)
+        //{
+        //    var img = context.Resims.SingleOrDefault(x => x.Id == imgid);
+        //    if (img != null)
+        //    {
+        //        string uzanti = Path.GetExtension(img.Link).ToLower();
+        //        if (uzanti == ".jpg" || uzanti == ".png")
+        //        {
+        //            return File(img.Link, "image/jpg");
+        //        }
+        //        else if (uzanti == ".docx")
+        //        {
+        //            return File("/Content/Word.jpg", "image/jpg");
+        //        }
+        //        else if (uzanti == ".xlsx")
+        //        {
+        //            return File("/Content/excel.jpg", "image/jpg");
+        //        }
+        //        return File("/Content/x-png-23.png", "image/jpg");
+        //    }
+        //    else
+        //    {
+        //        return File("/Content/x-png-23.png", "image/jpg");
+        //    }
+        //}
 
         public ActionResult DosyaSil(int id)
         {

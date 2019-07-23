@@ -1,0 +1,87 @@
+﻿@model staj_day3_meh.Models.Urunler
+
+@{
+    ViewBag.Title = "UrunDuzenle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>UrunDuzenle</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="hehe form-horizontal">
+        <h4>Urunler</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <h3>Ad:</h3>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Ad, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <h3>Fiyat:</h3>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Fiyat, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Fiyat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <h3>Aktif:</h3>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.Aktif)
+                @Html.ValidationMessageFor(model => model.Aktif, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <h3>Açıklama:</h3>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Aciklama, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Aciklama, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <h3>Uzun Açıklama:</h3>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UzunAcıklama, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UzunAcıklama, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <h3>Silindi:</h3>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.Silindi)
+                @Html.ValidationMessageFor(model => model.Silindi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <h3>Renk:</h3>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Renk, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Renk, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <h3>Beden:</h3>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Beden, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Beden, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Ekle" class="btn btn-lg btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

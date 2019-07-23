@@ -14,5 +14,7 @@ namespace staj_day3_meh.Models
         [Required]
         [StringLength(50)]
         public string Ad { get; set; }
+
+        public int? ustid { get; set; }
     }
 }

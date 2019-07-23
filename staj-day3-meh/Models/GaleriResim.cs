@@ -14,8 +14,12 @@ namespace staj_day3_meh.Models
         [Required]
         public string Link { get; set; }
 
-        public int GalerilerID { get; set; }
+        public int? GalerilerID { get; set; }
+
+        public int? UrunlerID { get; set; }
 
         public virtual Galeriler Galeriler { get; set; }
+
+        public virtual Urunler Urunler { get; set; }
     }
 }

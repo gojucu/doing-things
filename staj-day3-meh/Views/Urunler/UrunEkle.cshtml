@@ -1,0 +1,170 @@
+﻿@model staj_day3_meh.Models.Urunler
+
+@{
+    ViewBag.Title = "UrunEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>UrunEkle</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="hehe form-horizontal">
+    <h4>Urunler</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <h3>Ad:</h3>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Ad, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Ad, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <h3>Fiyat:</h3>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Fiyat, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Fiyat, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <h3>Aktif:</h3>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.Aktif)
+            @Html.ValidationMessageFor(model => model.Aktif, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <h3>Açıklama:</h3>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Aciklama, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Aciklama, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <h3>Uzun Açıklama:</h3>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.UzunAcıklama, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.UzunAcıklama, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <h3>Silindi:</h3>
+    <div class="form-group">
+         <div class="col-md-10">
+             @Html.CheckBoxFor(model => model.Silindi)
+             @Html.ValidationMessageFor(model => model.Silindi, "", new { @class = "text-danger" })
+         </div>
+    </div>
+    <h3>Renk:</h3>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Renk, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Renk, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <h3>Beden:</h3>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Beden, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Beden, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Ekle" class="btn btn-lg btn-success" />
+        </div>
+    </div>
+</div>
+}
+
+<h2>Ürün Listesi:</h2>
+<h3 class="h3-color">@TempData["hata"]</h3>
+<table class="tablo table table-bordered ">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fiyat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aktif)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UzunAcıklama)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Silindi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Renk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Beden)
+        </th>
+    </tr>
+    @foreach (var item in ViewBag.urunListesi)
+    {
+    <tr>
+        <td>
+            @item.Ad
+        </td>
+        <td>
+            @item.Fiyat
+        </td>
+        <td>
+            @item.Aktif
+        </td>
+        <td>
+            @item.Aciklama
+        </td>
+        <td>
+            @item.UzunAcıklama
+        </td>
+        <td>
+            @item.Silindi
+        </td>
+        <td>
+            @item.Renk
+        </td>
+        <td>
+            @item.Beden
+        </td>
+        <td>
+            <a href="/Urunler/@item.Id" class="btn btn-sm btn-bitbucket" rel="tag">Düzenle</a>
+            <button class="btn btn-sm btn-danger" type="button" onclick="return UrunSil(@item.Id)">Sayfayı Sil</button>
+            @*
+
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+        </td>
+    </tr>
+    }
+
+</table>
+
+@section Scripts {
+    <script>
+        function UrunSil(Id) {
+
+            bootbox.confirm("Silmek istediğinize emin misiniz?", function (result) {
+                if (result) {
+                    var dataObject = {
+                        Id: $("#Id").val()
+                    };
+                    var form_data = new FormData();
+                    form_data.append('Id', dataObject);
+                    window.location = '/Urunler/UrunSil/' + Id;
+                }
+            });
+        }
+    </script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+}
