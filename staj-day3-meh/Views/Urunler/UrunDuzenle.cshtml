@@ -81,7 +81,52 @@
     </div>
 }
 
+    <form >
+
+        <input type="hidden" name="UrunlerID" id="UrunlerID" value="@Model.Id" />
+        <p>
+            <label>Galeriye resim ekle: <span class="required"></span></label><br>
+            <input class="form-control" type="file" id="SelectImage" name="Link" multiple required value="" />
+        </p>
+
+
+        <input class="form-control btn-success show-alert" type="button" onclick="UploadImage() " value="Ekle" />
+    </form>
 
 @section Scripts {
+    <script>
+        var UploadImage = function () {
+            var file = $("#SelectImage").get(0).files;
+            var hidden = $("#UrunlerID").val();
+            var data = new FormData();
+            data.append("Link", file[0]);
+            data.append("UrunlerID", hidden);
+            $.ajax({
+                type: "POST",
+                url: "/Urunler/UruneResimEkle",
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function (sonuc) {
+
+                    if (sonuc) {
+                        bootbox.alert({
+                            message: "Yüklendi",
+                            callback: function () {
+                                window.location.reload(true);
+                            }
+                        })
+                        //$("#UploadedImage").append('<img src="/Modul/DisplayingImage?imgID=' + imgID + '"class= dosyalar-image "/>');
+                    } else {
+                        bootbox.alert({
+                            message: "Hata..gerizekalımısın"
+                         
+                        })
+                    }
+                 
+                }
+            })
+        }
+    </script>
     @Scripts.Render("~/bundles/jqueryval")
 }

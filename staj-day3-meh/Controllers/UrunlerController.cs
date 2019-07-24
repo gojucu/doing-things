@@ -1,6 +1,8 @@
 ﻿using staj_day3_meh.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -87,6 +89,66 @@ namespace staj_day3_meh.Controllers
             context.Urunlers.Remove(context.Urunlers.FirstOrDefault(x => x.Id == Id));
             context.SaveChanges();
             return RedirectToAction("UrunEkle", "Urunler");
+        }
+
+        string ResimKaydet(HttpPostedFileBase file)
+        {
+            Image orj = Image.FromStream(file.InputStream);
+            string dosyaadi = Path.GetFileNameWithoutExtension(file.FileName) + Guid.NewGuid() + Path.GetExtension(file.FileName);
+            orj.Save(Server.MapPath("~/Content/images/" + dosyaadi));
+            return dosyaadi;
+
+        }
+        [HttpPost]
+        public ActionResult UruneResimEkle(GaleriResim gr, HttpPostedFileBase Link)
+        {
+            try
+            {
+                string uzanti = Path.GetExtension(Link.FileName).ToLower();
+                string[] Uzantilar = new[] { ".jpg", ".png" };
+                if (uzanti == ".jpg" || uzanti == ".png")
+                {
+                    string dosyaadi = ResimKaydet(Link);
+                    gr.Link = "/Content/images/" + dosyaadi;
+                }
+                else
+                {
+                    return Json(false, JsonRequestBehavior.AllowGet);
+                }
+                var file = gr.Link;
+                if (file != null)
+                {
+                    GaleriResim img = new GaleriResim();
+                    img.Link = gr.Link;
+                    img.UrunlerID = gr.UrunlerID;
+                    foreach (string u in Uzantilar)
+                    {
+                        if (uzanti == u)
+                        {
+                            if (ModelState.IsValid)
+                            {
+                                using (context)
+                                {
+
+                                    context.GaleriResims.Add(gr);
+                                    context.SaveChanges();
+
+
+                                    return RedirectToAction("UrunDuzenle", "Urunler", new { id = gr.UrunlerID });
+                                }
+                            }
+                        }
+                    }
+                }
+
+                return RedirectToAction("UrunDuzenle", "Urunler", new { id = gr.UrunlerID });
+
+            }
+            catch
+            {
+
+                return RedirectToAction("UrunDuzenle", "Urunler", new { id = gr.UrunlerID });
+            }
         }
     }
 }
