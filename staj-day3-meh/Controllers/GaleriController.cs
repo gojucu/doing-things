@@ -24,7 +24,7 @@ namespace staj_day3_meh.Controllers
         [Route("Galeriler")]
         public ActionResult Galeriler()
         {
-            var hey = context.GaleriTips.ToList();
+            var hey = context.GaleriTips.ToList().Where(x=>x.ustid==0);
             ViewBag.Liste = hey;
             var galeri = context.Galerilers.ToList();
             ViewBag.galeriListe = galeri;
@@ -42,6 +42,7 @@ namespace staj_day3_meh.Controllers
             {
                 if (galeriler != null)
                 {
+                    galeriler.Şema = "Şema 1";
                     context.Galerilers.Add(galeriler);
                     context.SaveChanges();
                     return RedirectToAction("Galeriler", "Galeri");
@@ -70,7 +71,7 @@ namespace staj_day3_meh.Controllers
             ViewBag.Title = id;
             if (galeriler.Tipi == "Ürün Slider")
             {
-                var sliderResim = context.GaleriResims.ToList().Where(x => x.GalerilerID == id).ToList().ToPagedList(page ?? 1,8);
+                var sliderResim = context.GaleriResims.ToList().Where(x => x.UrunlerID !=null).ToList().ToPagedList(page ?? 1,9);
                 ViewBag.galeriResim = sliderResim;
             }
             else
@@ -83,8 +84,17 @@ namespace staj_day3_meh.Controllers
             ViewBag.sayi = sayi;
 
 
-            var galerii = context.GaleriTips.ToList();
+            var galerii = context.GaleriTips.ToList().Where(x=>x.ustid==0);
             ViewBag.galeriListe = galerii;
+            
+            var bar  = context.Galerilers.FirstOrDefault(x => x.Id == id);
+            var heyy = context.GaleriTips.FirstOrDefault(x=>x.Ad==bar.Tipi);
+            var galeriii = context.GaleriTips.ToList().Where(x => x.ustid == heyy.Id);
+            ViewBag.galeriListee = galeriii;
+
+            //var urunResimler = context.GaleriResims.ToList();
+            //var urunler = context.GaleriResims.FirstOrDefault(x => x.Id);
+            //ViewBag.urunler = urunler;
 
             Galeriler galeri = context.Galerilers.FirstOrDefault(x => x.Id == id);
             return View(galeri);
@@ -101,6 +111,7 @@ namespace staj_day3_meh.Controllers
                 Galeriler guncellenecek = context.Galerilers.FirstOrDefault(x => x.Id == galeriler.Id);
                 guncellenecek.Ad = galeriler.Ad;
                 guncellenecek.Tipi = galeriler.Tipi;
+                guncellenecek.Şema = galeriler.Şema;
                 guncellenecek.Genişlik = galeriler.Genişlik;
                 guncellenecek.Yükseklik = galeriler.Yükseklik;
                 guncellenecek.Aktif = galeriler.Aktif;
@@ -164,13 +175,13 @@ namespace staj_day3_meh.Controllers
                     }
                 }
 
-                return RedirectToAction("Galeriler", "Galeri");
+                return Json(false, JsonRequestBehavior.AllowGet);
 
             }
             catch
             {
 
-                return RedirectToAction("Galeriler", "Galeri");
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
     }

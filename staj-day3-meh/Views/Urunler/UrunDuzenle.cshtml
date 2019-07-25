@@ -75,26 +75,71 @@
 
         <div class="form-group">
             <div class="col-md-10">
-                <input type="submit" value="Ekle" class="btn btn-lg btn-success" />
+                <input type="submit" value="Düzenle" class="btn btn-lg btn-bitbucket" />
             </div>
         </div>
     </div>
 }
+<hr style="border:dotted;width:80%;color:black"/>
+    <form class="hehe comment-form">
+        <table>
+            <tr>
+                <td>
+                    <input type="hidden" name="UrunlerID" id="UrunlerID" value="@Model.Id" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Ürüne resim ekle: <span class="required"></span></label><br>
+                    <input class="form-control" type="file" id="SelectImage" name="Link" multiple required value="" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="form-control btn-success show-alert" type="button" onclick="UploadImage() " value="Ekle" />
+                </td>
+            </tr>
 
-    <form >
 
-        <input type="hidden" name="UrunlerID" id="UrunlerID" value="@Model.Id" />
-        <p>
-            <label>Galeriye resim ekle: <span class="required"></span></label><br>
-            <input class="form-control" type="file" id="SelectImage" name="Link" multiple required value="" />
-        </p>
-
-
-        <input class="form-control btn-success show-alert" type="button" onclick="UploadImage() " value="Ekle" />
+            
+        </table>
     </form>
+
+
+    <div class="container">
+
+        <h2>Resimler</h2>
+
+        <div class="row">
+            @foreach (var item in ViewBag.urunlerResim)
+            {
+                <div class="col-lg-3  col-sm-6 sil-dosya">
+                    
+                            <img src="@item.Link" class="img-rounded dosyalar-image" title="@item.Link" />
+                    <br />
+                    <span class="post-categories" margin="auto">
+                        <button class="btn btn-danger" type="button" onclick="return DosyaSil(@item.Id)" @*href="/Modul/DosyaSil/@item.Id" rel="tag"*@>Sil</button>
+                    </span>  <!--.post-categories -->
+                </div>
+            }
+        </div>
+    </div>
 
 @section Scripts {
     <script>
+        function DosyaSil(Id) {
+
+            bootbox.confirm("Silmek istediğinize emin misiniz?", function (result) {
+                if (result) {
+                    var dataObject = {
+                        Id: $("#Id").val()
+                    };
+                    var form_data = new FormData();
+                    form_data.append('Id', dataObject);
+                    window.location = '/Urunler/ResimSil/' + Id;
+                }
+            });
+        }
         var UploadImage = function () {
             var file = $("#SelectImage").get(0).files;
             var hidden = $("#UrunlerID").val();
@@ -119,7 +164,7 @@
                         //$("#UploadedImage").append('<img src="/Modul/DisplayingImage?imgID=' + imgID + '"class= dosyalar-image "/>');
                     } else {
                         bootbox.alert({
-                            message: "Hata..gerizekalımısın"
+                            message: "Hata.. Lütfen gerekli uzantıya sahip bir dosya giriniz.(.jpg, .png)"
                          
                         })
                     }

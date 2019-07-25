@@ -31,6 +31,9 @@ namespace staj_day3_meh.Models
 
         public bool Aktif { get; set; }
 
+        [StringLength(50)]
+        public string Şema { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GaleriResim> GaleriResims { get; set; }
     }

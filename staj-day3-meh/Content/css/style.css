@@ -59,7 +59,16 @@ body {
 .resim-car{
     height:550px;
 }
-.galeri-page {
+.galeri-page{
     margin: auto;
     text-align: center;
+}
+
+.urunler-card{
+    margin:10px 5px 10px 5px;
+}
+.urunler-img{
+    height:220px;
+    width:300px;
+    
 }

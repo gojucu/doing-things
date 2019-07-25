@@ -53,6 +53,10 @@ namespace staj_day3_meh.Controllers
         [Route("{id:int}")]
         public ActionResult UrunDuzenle(int id)
         {
+            var urunlerResim = context.GaleriResims.ToList().Where(x => x.UrunlerID == id).ToList();
+            ViewBag.urunlerResim = urunlerResim;
+
+
             Urunler urunler = context.Urunlers.FirstOrDefault(x => x.Id == id);
             return View(urunler);
         }
@@ -141,14 +145,22 @@ namespace staj_day3_meh.Controllers
                     }
                 }
 
-                return RedirectToAction("UrunDuzenle", "Urunler", new { id = gr.UrunlerID });
+                return Json(false, JsonRequestBehavior.AllowGet);
 
             }
             catch
             {
 
-                return RedirectToAction("UrunDuzenle", "Urunler", new { id = gr.UrunlerID });
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
+        public ActionResult ResimSil(int Id)
+        {
+            var hey = context.GaleriResims.FirstOrDefault(x => x.Id == Id);
+            int? qwe = hey.UrunlerID;
+            context.GaleriResims.Remove(context.GaleriResims.FirstOrDefault(x => x.Id == Id));
+            context.SaveChanges();
+            return RedirectToAction("UrunDuzenle", "Urunler", new { id = qwe });
         }
     }
 }
