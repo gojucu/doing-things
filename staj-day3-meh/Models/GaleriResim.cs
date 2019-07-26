@@ -18,6 +18,8 @@ namespace staj_day3_meh.Models
 
         public int? UrunlerID { get; set; }
 
+        public string KucukLink { get; set; }
+
         public virtual Galeriler Galeriler { get; set; }
 
         public virtual Urunler Urunler { get; set; }

@@ -184,7 +184,7 @@ else if (Model.Tipi == "Ürün Slider")
                 {
                     <div class="col-md-4 col-sm-6 ">
                         <div class="galeri-page thumbnail">
-                            <img class="" src="@item.Link" alt="...">
+                            <img class="" src="@item.KucukLink" alt="...">
                             <div class="caption">
                                 <h3>Başlık</h3>
                                 <p>Fiyat</p>
@@ -202,7 +202,7 @@ else if (Model.Tipi == "Ürün Slider")
             @foreach (var item in ViewBag.galeriResim)
             {
                 <div class="col-lg-3 col-sm-6 sil-dosya">
-                    <img src="@item.Link" class="img-rounded dosyalar-image" />
+                    <img src="@item.KucukLink" class="img-rounded dosyalar-image" />
                 </div>
             }
 
@@ -217,7 +217,7 @@ else if (Model.Tipi == "Ürün Slider")
                     <div class="col-lg-4 col-sm-12 w3-card  w3-light-grey" @*style="width:30%"*@>
 
                         <div class="w3-container w3-center">
-                            <img src="@item.Link" alt="Avatar" style="width:90%; padding-top:30px;">
+                            <img src="@item.KucukLink" alt="Avatar" style="width:90%; padding-top:30px;">
                             <h4>Açıklama</h4>
                             <h5>Fiyat</h5>
 

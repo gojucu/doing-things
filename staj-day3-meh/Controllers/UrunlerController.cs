@@ -98,8 +98,10 @@ namespace staj_day3_meh.Controllers
         string ResimKaydet(HttpPostedFileBase file)
         {
             Image orj = Image.FromStream(file.InputStream);
+            Bitmap kck = new Bitmap(orj, 250, 250);
             string dosyaadi = Path.GetFileNameWithoutExtension(file.FileName) + Guid.NewGuid() + Path.GetExtension(file.FileName);
             orj.Save(Server.MapPath("~/Content/images/" + dosyaadi));
+            kck.Save(Server.MapPath("~/Content/images/small/" + dosyaadi));
             return dosyaadi;
 
         }
@@ -114,6 +116,7 @@ namespace staj_day3_meh.Controllers
                 {
                     string dosyaadi = ResimKaydet(Link);
                     gr.Link = "/Content/images/" + dosyaadi;
+                    gr.KucukLink = "/Content/images/small/" + dosyaadi;
                 }
                 else
                 {
