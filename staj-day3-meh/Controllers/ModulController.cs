@@ -92,31 +92,6 @@ namespace staj_day3_meh.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-        //public ActionResult DisplayingImage(int imgid)
-        //{
-        //    var img = context.Resims.SingleOrDefault(x => x.Id == imgid);
-        //    if (img != null)
-        //    {
-        //        string uzanti = Path.GetExtension(img.Link).ToLower();
-        //        if (uzanti == ".jpg" || uzanti == ".png")
-        //        {
-        //            return File(img.Link, "image/jpg");
-        //        }
-        //        else if (uzanti == ".docx")
-        //        {
-        //            return File("/Content/Word.jpg", "image/jpg");
-        //        }
-        //        else if (uzanti == ".xlsx")
-        //        {
-        //            return File("/Content/excel.jpg", "image/jpg");
-        //        }
-        //        return File("/Content/x-png-23.png", "image/jpg");
-        //    }
-        //    else
-        //    {
-        //        return File("/Content/x-png-23.png", "image/jpg");
-        //    }
-        //}
 
         public ActionResult DosyaSil(int id)
         {
@@ -124,6 +99,36 @@ namespace staj_day3_meh.Controllers
             context.SaveChanges();
             TempData["shortMessage"] = "Dosya silindi.";
             return RedirectToAction("Dosyalar", "Modul");
+        }
+
+        [Route("MenuTip")]
+        public ActionResult MenuBar(int id=1)
+        {
+            var menuTip = context.MenuTips.ToList();
+            ViewBag.menuTip = menuTip;
+
+        
+            Menuler menuler = context.Menulers.FirstOrDefault(x => x.Id == id);
+            return View(menuler);
+        }
+
+        [HttpPost]
+        [Route("MenuTip")]
+        public ActionResult MenuBar(Menuler menuler)
+        {
+
+            Menuler guncellenecek = context.Menulers.FirstOrDefault(x => x.Id == menuler.Id);
+
+            guncellenecek.Ad = menuler.Ad;
+
+            context.SaveChanges();
+            return RedirectToAction("MenuBar", "Modul", new { id = menuler.Id });
+        }
+        public ActionResult Menu()
+        {
+            var menuTip = context.Menulers.FirstOrDefault(x => x.Id == 1);
+            ViewBag.menuTipp = menuTip.Ad;
+            return View(context.Menus.ToList());
         }
     }
 }

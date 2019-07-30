@@ -177,7 +177,7 @@ else if (Model.Tipi == "Ürün Slider")
 {
     if (Model.Şema == null || Model.Şema == "Şema 1")
     {
-        <div class="container">
+        <div class="hehe container">
             <div class="urunler-card  row">
 
                 @foreach (var item in ViewBag.galeriResim)
@@ -198,11 +198,65 @@ else if (Model.Tipi == "Ürün Slider")
     }
     else if (Model.Şema == "Şema 2")
     {
-        <div class="row">
+        <div class="hehe row">
             @foreach (var item in ViewBag.galeriResim)
             {
-                <div class="col-lg-3 col-sm-6 sil-dosya">
-                    <img src="@item.KucukLink" class="img-rounded dosyalar-image" />
+
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <article class="card-wrapper">
+                        <div class="image-holder">
+                            <a href="#" class="image-holder__link"></a>
+                            <div class="image-liquid image-holder--original" style="background-image: url('@item.Link')">
+                            </div>
+                        </div>
+                        <div class="product-description">
+                            <!-- title -->
+                            <h1 class="product-description__title">
+                                <a href="#">
+                                    Adidas Originals
+                                </a>
+                            </h1>
+                            <!-- category and price -->
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-8 product-description__category secondary-text">
+                                    Men's running shirt
+                                </div>
+                                <div class="col-xs-12 col-sm-4 product-description__price">
+                                    € 499
+                                </div>
+                            </div>
+                            <!-- divider -->
+                            <hr />
+                            <!-- sizes -->
+                            <div class="sizes-wrapper">
+                                <b>Sizes</b>
+                                <br />
+                                <span class="secondary-text text-uppercase">
+                                    <ul class="list-inline">
+                                        <li>xs,</li>
+                                        <li>s,</li>
+                                        <li>sm,</li>
+                                        <li>m,</li>
+                                        <li>l,</li>
+                                        <li>xl,</li>
+                                        <li>xxl</li>
+                                    </ul>
+                                </span>
+                            </div>
+                            <!-- colors -->
+                            <div class="color-wrapper">
+                                <b>Colors</b>
+                                <br />
+                                <ul class="list-inline color-list">
+                                    <li class="color-list__item color-list__item--red"></li>
+                                    <li class="color-list__item color-list__item--blue"></li>
+                                    <li class="color-list__item color-list__item--green"></li>
+                                    <li class="color-list__item color-list__item--orange"></li>
+                                    <li class="color-list__item color-list__item--purple"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             }
 
@@ -210,11 +264,11 @@ else if (Model.Tipi == "Ürün Slider")
     }
     else { 
         <div class="w3-container">
-            <div class="row">
+            <div class="hehe row">
                 <h2>Card Example</h2>
                 @foreach (var item in ViewBag.galeriResim)
                 {
-                    <div class="col-lg-4 col-sm-12 w3-card  w3-light-grey" @*style="width:30%"*@>
+                    <div class="col-lg-4 col-sm-12 w3-card  w3-light-grey"  style="margin:7px; width:30%">
 
                         <div class="w3-container w3-center">
                             <img src="@item.KucukLink" alt="Avatar" style="width:90%; padding-top:30px;">

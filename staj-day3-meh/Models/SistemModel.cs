@@ -8,7 +8,7 @@ namespace staj_day3_meh.Models
     public partial class SistemModel : DbContext
     {
         public SistemModel()
-            : base("name=Sistem8Model")
+            : base("name=Sistem01Model")
         {
         }
 
@@ -16,6 +16,8 @@ namespace staj_day3_meh.Models
         public virtual DbSet<GaleriResim> GaleriResims { get; set; }
         public virtual DbSet<GaleriTip> GaleriTips { get; set; }
         public virtual DbSet<Menu> Menus { get; set; }
+        public virtual DbSet<Menuler> Menulers { get; set; }
+        public virtual DbSet<MenuTip> MenuTips { get; set; }
         public virtual DbSet<Resim> Resims { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Urunler> Urunlers { get; set; }

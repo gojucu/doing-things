@@ -154,6 +154,8 @@
     <Compile Include="Models\GaleriResim.cs" />
     <Compile Include="Models\GaleriTip.cs" />
     <Compile Include="Models\Menu.cs" />
+    <Compile Include="Models\Menuler.cs" />
+    <Compile Include="Models\MenuTip.cs" />
     <Compile Include="Models\Resim.cs" />
     <Compile Include="Models\SistemModel.cs" />
     <Compile Include="Models\sysdiagram.cs" />
@@ -7613,6 +7615,8 @@
     <Content Include="Views\Galeri\GaleriDuzenle.cshtml" />
     <Content Include="Views\Urunler\UrunEkle.cshtml" />
     <Content Include="Views\Urunler\UrunDuzenle.cshtml" />
+    <Content Include="Views\Modul\MenuBar.cshtml" />
+    <Content Include="Views\Modul\Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

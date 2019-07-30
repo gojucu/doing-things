@@ -71,8 +71,10 @@ namespace staj_day3_meh.Controllers
             ViewBag.Title = id;
             if (galeriler.Tipi == "Ürün Slider")
             {
-                var sliderResim = context.GaleriResims.ToList().Where(x => x.UrunlerID !=null).ToList().ToPagedList(page ?? 1,9);
+                //var urunler = context.Urunlers.ToList().ToPagedList(page ?? 1, 9);
+                var sliderResim = context.GaleriResims.ToList().Where(x => x.UrunlerID != null).ToList().ToPagedList(page ?? 1, 9);
                 ViewBag.galeriResim = sliderResim;
+                //ViewBag.urunler = urunler;
             }
             else
             {
