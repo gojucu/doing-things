@@ -71,9 +71,11 @@ namespace staj_day3_meh.Controllers
             ViewBag.Title = id;
             if (galeriler.Tipi == "Ürün Slider")
             {
+                var juo = context.GaleriResims.ToList().Take(1).Where(x => x.UrunlerID == x.Urunler.Id);
                 //var urunler = context.Urunlers.ToList().ToPagedList(page ?? 1, 9);
-                var sliderResim = context.GaleriResims.ToList().Where(x => x.UrunlerID != null).ToList().ToPagedList(page ?? 1, 9);
+                var sliderResim = context.GaleriResims.ToList().Where(x => x.UrunlerID != null&& x.Urunler.Aktif!=false&& x.UrunlerID == x.Urunler.Id).ToList().ToPagedList(page ?? 1, 9);
                 ViewBag.galeriResim = sliderResim;
+                
                 //ViewBag.urunler = urunler;
             }
             else
@@ -101,7 +103,7 @@ namespace staj_day3_meh.Controllers
             Galeriler galeri = context.Galerilers.FirstOrDefault(x => x.Id == id);
             return View(galeri);
         }
-
+        
         [HttpPost]
         [ValidateInput(false)]
         [Route("{id:int}")]
@@ -126,6 +128,20 @@ namespace staj_day3_meh.Controllers
                 return RedirectToAction("Galeriler", "Galeri");
             }
         }
+
+        //public ActionResult UrunListele(int id,int? page)
+        //{
+        //    ViewBag.Title = id;
+        //    var urunler = context.Urunlers.ToList();
+        //    ViewBag.urunler = urunler;
+           
+        //    var sema = context.Galerilers.FirstOrDefault(x => x.Id == id);
+        //    ViewBag.sema = sema.Şema;
+
+        //    var sliderResim = context.GaleriResims.ToList().Where(x => x.UrunlerID != null).ToList().ToPagedList(page ?? 1, 9);
+        //    ViewBag.resim = sliderResim;
+        //    return View(context.GaleriResims.ToList());
+        //}
 
         string ResimKaydet(HttpPostedFileBase file)
         {

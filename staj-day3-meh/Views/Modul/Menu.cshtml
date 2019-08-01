@@ -186,4 +186,18 @@ else if (ViewBag.menuTipp == "Menu 5")
     </div>
 }
 
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<p>
+    onFineChange gets executed more often, even on the finest change
+    as we move mouse over the picker controls.
+
+<p>
+    Rectangle color:
+    <input class="jscolor {onFineChange:'update(this)'}" value="cc66ff">
+<p id="rect" style="border:1px solid gray; width:161px; height:100px;">
+    <script>function update(jscolor) {
+    // 'jscolor' instance can be used as a string
+    document.getElementById('rect').style.backgroundColor = '#' + jscolor
+}</script>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">

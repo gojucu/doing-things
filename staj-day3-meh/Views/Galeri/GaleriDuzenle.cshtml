@@ -175,6 +175,7 @@ else if (Model.Tipi == "Content Slider")
 }
 else if (Model.Tipi == "Ürün Slider")
 {
+
     if (Model.Şema == null || Model.Şema == "Şema 1")
     {
         <div class="hehe container">
@@ -262,111 +263,103 @@ else if (Model.Tipi == "Ürün Slider")
 
         </div>
     }
-    else { 
+    else
+    {
         <div class="w3-container">
             <div class="hehe row">
                 <h2>Card Example</h2>
                 @foreach (var item in ViewBag.galeriResim)
                 {
-                    <div class="col-lg-4 col-sm-12 w3-card  w3-light-grey"  style="margin:7px; width:30%">
+                    <div class="col-lg-4 col-sm-12 w3-card  w3-light-grey" style="margin:7px; width:30%">
 
                         <div class="w3-container w3-center">
                             <img src="@item.KucukLink" alt="Avatar" style="width:90%; padding-top:30px;">
-                            <h4>Açıklama</h4>
+                            <h4>@item.Urunler.Ad</h4>
                             <h5>Fiyat</h5>
 
                             <div class="w3-section">
                                 <button class="w3-button w3-green">Satın Al</button>
                             </div>
                         </div>
-
                     </div>
                 }
             </div>
-            </div>
-            }
-            <span class="galeri-page">
-                @Html.PagedListPager((IPagedList)ViewBag.galeriResim, Page => Url.Action("GaleriDuzenle", "Galeri", new { Page = Page }))
-            </span>
-            }
-            else { }
-            @*<div class="row">
-            @foreach (var item in ViewBag.galeriResim)
-            {
-                <div class="col-lg-3 col-sm-6 sil-dosya">
-                    <img src="@item.Link" class="img-rounded dosyalar-image" />
-                </div>
-            }
+        </div>
+    }
+    <span class="galeri-page">
+        @Html.PagedListPager((IPagedList)ViewBag.galeriResim, Page => Url.Action("GaleriDuzenle", "Galeri", new { Page = Page }))
+    </span>
+}
+else { }
 
-        </div>*@
 
-            }
+}
 
-            @section Scripts {
-                <script>
-                    var UploadImage = function () {
-                        var file = $("#SelectImage").get(0).files;
-                        var hidden = $("#GalerilerID").val();
-                        var data = new FormData();
-                        data.append("Link", file[0]);
-                        data.append("GalerilerID", hidden);
-                        $.ajax({
-                            type: "POST",
-                            url: "/Galeri/GaleriyeResimEkle",
-                            data: data,
-                            contentType: false,
-                            processData: false,
-                            success: function (sonuc) {
+@section Scripts {
+    <script>
+        var UploadImage = function () {
+            var file = $("#SelectImage").get(0).files;
+            var hidden = $("#GalerilerID").val();
+            var data = new FormData();
+            data.append("Link", file[0]);
+            data.append("GalerilerID", hidden);
+            $.ajax({
+                type: "POST",
+                url: "/Galeri/GaleriyeResimEkle",
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function (sonuc) {
 
-                                if (sonuc) {
-                                    bootbox.alert({
-                                        message: "Yüklendi",
-                                        callback: function () {
-                                            window.location.reload(true);
-                                        }
-                                    })
-                                    //$("#UploadedImage").append('<img src="/Modul/DisplayingImage?imgID=' + imgID + '"class= dosyalar-image "/>');
-                                } else {
-                                    bootbox.alert({
-                                        message: "Hata.. Lütfen gerekli uzantıya sahip bir dosya giriniz.(.jpg, .png)"
-
-                                    })
-                                }
-
+                    if (sonuc) {
+                        bootbox.alert({
+                            message: "Yüklendi",
+                            callback: function () {
+                                window.location.reload(true);
                             }
                         })
-                    }
-                    $(document).ready(function () {
-                        $('.carousel').carousel({
-                            interval: 60000
+                        //$("#UploadedImage").append('<img src="/Modul/DisplayingImage?imgID=' + imgID + '"class= dosyalar-image "/>');
+                    } else {
+                        bootbox.alert({
+                            message: "Hata.. Lütfen gerekli uzantıya sahip bir dosya giriniz.(.jpg, .png)"
+
                         })
-                        $("#owl-demo").owlCarousel({
+                    }
 
-                            nav: true, // Show next and prev buttons
+                }
+            })
+        }
+        $(document).ready(function () {
+            $('.carousel').carousel({
+                interval: 60000
+            })
+            $("#owl-demo").owlCarousel({
 
-                            slideSpeed: 300,
-                            paginationSpeed: 400,
-                            navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+                nav: true, // Show next and prev buttons
 
-                            items: 4,
-                            itemsDesktop: false,
-                            itemsDesktopSmall: false,
-                            itemsTablet: false,
-                            itemsMobile: false
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
 
-                        });
+                items: 4,
+                itemsDesktop: false,
+                itemsDesktopSmall: false,
+                itemsTablet: false,
+                itemsMobile: false
 
-                    });
-                </script>
-                @*<script>
-                $(document).ready(function () {
-                    $('.owl-carousel').owlCarousel({
-                        margin: 10,
-                        loop: true,
-                        autoWidth: true,
-                        items: 4
-                    })
-                });
-            </script>*@
-                @Scripts.Render("~/bundles/jqueryval")
-            }
+            });
+
+        });
+    </script>
+    @*<script>
+            $(document).ready(function () {
+                $('.owl-carousel').owlCarousel({
+                    margin: 10,
+                    loop: true,
+                    autoWidth: true,
+                    items: 4
+                })
+            });
+        </script>*@
+    @Scripts.Render("~/bundles/jqueryval")
+}
