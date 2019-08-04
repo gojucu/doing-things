@@ -14,33 +14,56 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="hehe form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+<div class="hehe form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
 
-        <h3>Menü Tipi:</h3>
-        <div class="form-group">
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Ad, new SelectList(ViewBag.menuTip, "Ad", "Ad"), "")
-                @Html.ValidationMessageFor(model => model.Ad, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+    <h3>Menü Tipi:</h3>
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Ad, new SelectList(ViewBag.menuTip, "Ad", "Ad"), "")
+            @Html.ValidationMessageFor(model => model.Ad, "", new { @class = "text-danger" })
         </div>
     </div>
+    @*<div style=" left:280px; top:10px;">
+        toHEXString = <span id="hex-str"></span><br />
+    </div>*@
+    <input class="jscolor {onFineChange:'update(this)'}" name="Renk" value="@Model.Renk">
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 @*Menü Tip 1*@
 @{
-    Html.RenderAction("Menu", "Modul"); 
+    Html.RenderAction("Menu", "Modul");
 }
+
 
 @section Scripts {
     <script>
+
+        /*Renk scriptleri*/
+
+
+        function update(jscolor) {
+            // 'jscolor' instance can be used as a string
+            document.getElementById('rect').style.backgroundColor = '#' + jscolor
+            document.getElementById('rect1').style.backgroundColor = '#' + jscolor
+            document.getElementById('rect2').style.backgroundColor = '#' + jscolor
+            document.getElementById('rect3').style.backgroundColor = '#' + jscolor
+            document.getElementById('rect4').style.backgroundColor = '#' + jscolor
+
+            document.getElementById('hex-str').innerHTML = picker.toHEXString();
+        }
+
+
+        /*Menulerin scriptleri*/
+
         (function ($) {
             $(document).ready(function () {
                 $("#cssmenu").menumaker({
@@ -48,7 +71,7 @@
                 });
             });
         })(jQuery);
-        
+
         $(document).ready(function () {
             $('.navbar-fostrap').click(function () {
                 $('.nav-fostrap').toggleClass('visible');

@@ -128,18 +128,18 @@ else if (ViewBag.menuTipp == "Menu 4")
     @*Menu 4*@
     <div id="main">
         <div class="mcontainer">
-            <nav class="pembe-menu menu">
+            <nav id="rect" style="" class="pembe-menu menu">
                 <ol>
                     @foreach (var item in Model.ToList().Where(m => m.ustid == 0))
                     {
                         if (Model.ToList().Where(m => m.ustid == item.id).Count() >= 1)
                         {
-                            <li class="menu-item">
+                            <li  class="menu-item">
                                 <a href="#0">@item.Ad</a>
                                 <ol class="sub-menu">
                                     @foreach (var item2 in Model.ToList().Where(m => m.ustid == item.id))
                                     {
-                                        <li class="menu-item">@Html.ActionLink(item2.Ad, "Index", "Home", new { id = item2.id }, null)</li>
+                                        <li id="rect1"  class="menu-item">@Html.ActionLink(item2.Ad, "Index", "Home", new { id = item2.id }, null)</li>
                                     }
                                 </ol>
                             </li>
@@ -187,17 +187,5 @@ else if (ViewBag.menuTipp == "Menu 5")
 }
 
 
-<p>
-    onFineChange gets executed more often, even on the finest change
-    as we move mouse over the picker controls.
-
-<p>
-    Rectangle color:
-    <input class="jscolor {onFineChange:'update(this)'}" value="cc66ff">
-<p id="rect" style="border:1px solid gray; width:161px; height:100px;">
-    <script>function update(jscolor) {
-    // 'jscolor' instance can be used as a string
-    document.getElementById('rect').style.backgroundColor = '#' + jscolor
-}</script>
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">

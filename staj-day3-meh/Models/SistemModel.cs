@@ -8,7 +8,7 @@ namespace staj_day3_meh.Models
     public partial class SistemModel : DbContext
     {
         public SistemModel()
-            : base("name=Sistem01Model")
+            : base("name=Sistem12Model")
         {
         }
 

@@ -120,6 +120,7 @@ namespace staj_day3_meh.Controllers
             Menuler guncellenecek = context.Menulers.FirstOrDefault(x => x.Id == menuler.Id);
 
             guncellenecek.Ad = menuler.Ad;
+            guncellenecek.Renk = menuler.Renk;
 
             context.SaveChanges();
             return RedirectToAction("MenuBar", "Modul", new { id = menuler.Id });

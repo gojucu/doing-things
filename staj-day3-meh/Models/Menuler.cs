@@ -13,5 +13,8 @@ namespace staj_day3_meh.Models
 
         [StringLength(50)]
         public string Ad { get; set; }
+
+        [StringLength(10)]
+        public string Renk { get; set; }
     }
 }
